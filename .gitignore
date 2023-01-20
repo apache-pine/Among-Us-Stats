@@ -1,4 +1,5 @@
 # index.js with sensitive info
+node_modules
 /scripts/index.js
 
 # Byte-compiled / optimized / DLL files
