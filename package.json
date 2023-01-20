@@ -1,0 +1,23 @@
+{
+  "name": "among-us-stats",
+  "version": "1.0.0",
+  "description": "A repo to keep track of the stats of the Among Us games played by the streamer KYR_SP33DY and those he streams with.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apache-pine/Among-Us-Stats.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/apache-pine/Among-Us-Stats/issues"
+  },
+  "homepage": "https://github.com/apache-pine/Among-Us-Stats#readme",
+  "dependencies": {
+    "mysql": "^2.18.1"
+  }
+}
