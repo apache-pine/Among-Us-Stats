@@ -6,13 +6,7 @@ To use the program, the user simply needs to run the client.py Python file. With
 
 This software was designed to make it easier for users to interact with the database. The program is meant to be simple and easy to use. The program is also meant to be a demonstration of how to connect to a Python application to a cloud database and perform CRUD operations. The program is not meant to be a full-featured database management system. For that, other programs such as MySQL Workbench should be used. This program is especially useful for inputting new data regarding the Among Us games.
 
-<!-- TODO
-        Provide a link to the YouTube demonstration.
-            4-5 minute demo of the software running.
-            A walkthrough of the code.
-            A view of the cloud database. -->
-
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://youtu.be/ieA1BLEBjRg)
 
 # Cloud Database
 
