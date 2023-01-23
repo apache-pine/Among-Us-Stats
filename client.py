@@ -249,7 +249,7 @@ def main():
         elif menu_input == "2":
             # Insert
             print(
-                "From this menu, you can only insert into the match table and the match_results table.")
+                "From this menu, you can only insert into the match table and the match_results table. For more options, use the MySQL Workbench.")
             insert_input = input(
                 "Would you like to insert into the\nA. match table\nB. match_results table?\nEnter selection: ").lower()
 
@@ -271,49 +271,46 @@ def main():
             elif insert_input == "b":
                 # Match Results
                 num_players_input = input("Enter number of players: ")
+                print()
+                print("Matches:")
+                print("match_id, match_alias, date_played, game_version_id")
+                select("*", "among_us_stats.match", "match_id > 0")
+                print()
+                match_id_input = input("Enter match ID: ")
 
                 for i in range(int(num_players_input)):
-                    print()
-                    print("Matches:")
-                    select(
-                        "*", "among_us_stats.match", "match_id > 0")
-                    print("match_id, match_alias, date_played, game_version_id")
-                    print()
-                    match_id_input = input("Enter match ID: ")
+
                     print("\nPlayers:")
-                    select(
-                        "player_id, player_name, player_alias", "player", "player_id > 0")
                     print("player_id, player_name, player_alias")
+                    select("player_id, player_name, player_alias", "player", "player_id > 0")
                     print()
-                    player_id_input = input("Enter player ID: ")
+                    player_id_input = input(f"Enter player ID for player {i}: ")
                     print("\nRoles:")
+                    print("role_id, role_name, team_id, team_name, role_type_id, role_type_name")
                     select("*", "role_summary", "role_id > 0")
-                    print(
-                        "role_id, role_name, team_id, team_name, role_type_id, role_type_name")
                     print()
-                    role_id_input = input("Enter role ID: ")
+                    role_id_input = input(f"Enter role ID for player {i}: ")
+                    second_role_input = input(f"Enter second role ID for player {i} or NULL if there was no second role: ")
+                    killed_by_role_input = input(f"Enter the role ID for the role that killed player {i} or NULL if there was no killed by role: ")
                     print("\nModifiers:")
-                    select(
-                        "*", "modifier", "modifier_id > 0 ORDER BY modifier_name")
                     print("modifier_id, modifier_name")
+                    select("*", "modifier", "modifier_id > 0 ORDER BY modifier_name")
                     print()
-                    modifier_id_input = input("Enter modifier ID: ")
+                    modifier_id_input = input(f"Enter modifier ID for player {i}: ")
                     print("\nDeath Types:")
-                    select("*", "death", "death_id > 0")
                     print("death_id, death_type")
+                    select("*", "death", "death_id > 0")
                     print()
-                    death_id_input = input("Enter death ID: ")
+                    death_id_input = input(f"Enter death ID for player {i}: ")
                     print("\nPotential Killers:")
-                    select(
-                        "player_id, player_name", "player", "player_id > 0")
                     print("player_id, player_name")
+                    select("player_id, player_name", "player", "player_id > 0")
                     print()
-                    killed_by_input = input(
-                        "Enter the player ID of the killer or NULL if there was no killer: ")
-                    print("\nDid the player win?")
+                    killed_by_input = input(f"Enter the player ID of the killer or NULL if there was no killer for player {i}: ")
+                    print(f"\nDid player {i} win?")
                     did_win_input = input("Enter 1 for yes or 0 for no: ")
-                    insert("among_us_stats.match_results", "match_id, player_id, role_id, modifier_id, death_id, killed_by, did_win",
-                           f"{match_id_input}, {player_id_input}, {role_id_input}, {modifier_id_input}, {death_id_input}, '{killed_by_input}', {did_win_input}")
+                    insert("among_us_stats.match_results", "match_id, player_id, role_id, second_role, modifier_id, death_id, killed_by, killed_by_role, did_win",
+                           f"{match_id_input}, {player_id_input}, {role_id_input}, {second_role_input}, {modifier_id_input}, {death_id_input}, {killed_by_input}, {killed_by_role_input}, {did_win_input}")
                     print()
 
             else:
